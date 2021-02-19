@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Cadastro de Clientes JS </title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<meta charset="utf-8">
+	<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+	<script src="js/bootstrap.min.js"></script>
+</head>
+
+<body onload="mostraValores()">
+
+	<div class="container">	
+		<div class="header clearfix">
+			<center><h2>Estacionamento JS</h2>
+				<a href="index.html" class="btn btn-primary">Cadastrar Veiculos</a>
+				<a href="clientes.html" class="btn btn-primary">Cadastrar Clientes</a>
+				<a href="pagamentos.html" class="btn btn-primary">Pagamentos</a>
+				<a href="estatisticas.html" class="btn btn-primary">Estatisticas</a>
+				<a href="login.html" class="btn btn-primary">Sair</a>
+			</center>
+		</div>
+		<center><h3>Área de Pagamentos</h3></center>
+		<div class="jumbotron">			
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Horista</th>
+						<th>Diarista</th>
+						<th>Mensalista</th>
+						<th>Anual</th>
+					</tr>
+					<tr>
+						<th>R$ 15,00</th>
+						<th>R$ 10,00</th>
+						<th>R$ 05,00</th>
+						<th>R$ 02,00</th>
+					</tr>
+				</thead>
+			</table>
+				
+			<form id="formValor">
+				<div id="aviso"></div>
+				<div class="form-group">
+					<label>Valores</label>
+						<input type="text" class="form-control" name="" id="valores" placeholder="R$:">
+				</div>
+				<button type="submit" class="btn btn-primary">Adicionar</button>
+			</form>
+			<div class="row marketing">
+				<div class="col-lg-13">
+					<table class="table table-hover" >
+						<thead>
+							<tr><th><h3>Pagamentos<h3></th></tr>
+						</thead>
+						<tbody id="valorR"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script src="js/valores.js"></script>
+</body>
+</html>

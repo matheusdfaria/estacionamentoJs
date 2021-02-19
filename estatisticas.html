@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Estacionamento JS</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<meta charset="utf-8">	
+	<script src="https://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js" data-dojo-config="isDebug: 1, async: 1, parseOnLoad: 1"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+	<script>function Mudarestado(el) {
+        var display = document.getElementById(el).style.display;
+        if(display == "none")
+            document.getElementById(el).style.display = 'block';
+        else
+            document.getElementById(el).style.display = 'none';
+    	}
+	</script>
+</head>
+
+<body>
+<div class="container">
+	<div class="header clearfix">
+		<center><h2>Estacionamento JS</h2>
+			<a href="index.html" class="btn btn-primary">Cadastrar Veiculos</a>
+			<a href="clientes.html" class="btn btn-primary">Cadastrar Clientes</a>
+			<a href="pagamentos.html" class="btn btn-primary">Pagamentos</a>
+			<a href="estatisticas.html" class="btn btn-primary">Estatisticas</a>
+			<a href="login.html" class="btn btn-primary">Sair</a>
+		</center>
+	</div>
+	<center>
+		<h3>Margem de Lucros / Mês</h3>		
+		<button type="button" class="btn btn-primary" onclick="Mudarestado('pizza')">PIZZA</button>
+		<button type="button" class="btn btn-primary" onclick="Mudarestado('pontos')">PONTOS</button>
+		<br/>
+	</center>
+
+	<div class="jumbotron">
+		<div id="pizza">
+			<div
+				data-dojo-type="dojox/charting/widget/Chart"
+				data-dojo-props="theme:dojox.charting.themes.Claro" id="viewsChart" style="width: 550px; height: 550px;">
+
+				<!-- Pie Chart: add the plot -->
+				<div class="plot" name="default" type="Pie" radius="200" fontColor="#000" labelOffset="-20"></div>
+
+				<!-- pieData is the data source -->
+				<div class="series" name="Margem de Lucros" array="chartData"></div>
+			</div>
+
+			<!-- load dojo and provide config via data attribute -->
+		
+			<script>
+
+				// x and y coordinates used for easy understanding of where they should display
+				// Data represents website visits over a week period
+				chartData = [
+					{ x: 1, y: 19021 },
+					{ x: 1, y: 12837 },
+					{ x: 1, y: 12378 },
+					{ x: 1, y: 24882 },
+					{ x: 1, y: 17654 },
+					{ x: 1, y: 15833 },
+					{ x: 1, y: 16122 }
+				];
+
+				require([
+					// Require the widget parser
+					"dojo/parser",
+
+					 // Require the basic 2d chart resource
+					"dojox/charting/widget/Chart",
+
+					// Require the theme of our choosing
+				    "dojox/charting/themes/Claro",
+
+					// Charting plugins:
+
+					// 	Require the Pie type of Plot
+					"dojox/charting/plot2d/Pie"
+
+				]);
+
+			</script>
+		</div>
+		<div id="pontos">
+			<div id="chartNode" style="width:550px;height:550px;"></div>
+			<script>
+			require([
+			 // Require the basic 2d chart resource
+			"dojox/charting/Chart",
+			
+			// Require the 'Tom' theme
+			"dojox/charting/themes/Tom",
+
+			// Charting plugins: 
+
+			// 	We want to plot Lines 
+			"dojox/charting/plot2d/Lines",
+			
+			//	We want to use Markers
+			"dojox/charting/plot2d/Markers",
+
+			//	We'll use default x/y axes
+			"dojox/charting/axis2d/Default",
+
+			// Wait until the DOM is ready
+			"dojo/domReady!"
+		], function(Chart, theme, LinesPlot){
+
+				// Define the data
+				var chartData = [10000,9200,11811,12000,7662,13887,14200,12222,12000,10009,11288,12099];
+
+				// Create the chart within it's "holding" node
+				var chart = new Chart("chartNode");
+
+				// Set the theme
+				chart.setTheme(theme);
+
+				// Add the only/default plot 
+				chart.addPlot("default", {
+					type: LinesPlot,
+					markers: true
+				});
+				
+				// Add axes
+				chart.addAxis("x");
+				chart.addAxis("y", { min: 5000, max: 15000, vertical: true, fixLower: "major", fixUpper: "major" });
+
+				// Add the series of data
+				chart.addSeries("Monthly Sales",chartData);
+
+				// Render the chart!
+				chart.render();
+				
+			});
+			</script>
+		</div>
+	</div>
+</body>
+</html>
